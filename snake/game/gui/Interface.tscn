@@ -1,0 +1,135 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://game/gui/font_resource.tres" type="DynamicFont" id=1]
+[ext_resource path="res://game/gui/interface.gd" type="Script" id=2]
+[ext_resource path="res://media/sheet.png" type="Texture" id=3]
+[ext_resource path="res://media/interface/title_screen.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 8, 8 )
+
+[node name="Interface" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 6.0
+margin_right = -8.0
+margin_bottom = -8.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="HBoxContainer" parent="."]
+margin_right = 112.0
+margin_bottom = 8.0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="Play"]
+margin_right = 60.0
+margin_bottom = 8.0
+size_flags_horizontal = 2
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "SCORE:5040"
+
+[node name="HBar" type="HBoxContainer" parent="Play"]
+margin_left = 88.0
+margin_right = 112.0
+margin_bottom = 8.0
+custom_constants/separation = 0
+
+[node name="H1" type="TextureRect" parent="Play/HBar"]
+margin_right = 8.0
+margin_bottom = 8.0
+texture = SubResource( 1 )
+
+[node name="H2" type="TextureRect" parent="Play/HBar"]
+margin_left = 8.0
+margin_right = 16.0
+margin_bottom = 8.0
+texture = SubResource( 1 )
+
+[node name="H3" type="TextureRect" parent="Play/HBar"]
+margin_left = 16.0
+margin_right = 24.0
+margin_bottom = 8.0
+texture = SubResource( 1 )
+
+[node name="Title" type="VBoxContainer" parent="."]
+margin_right = 112.0
+margin_bottom = 114.0
+alignment = 1
+
+[node name="TitleImage" type="TextureRect" parent="Title"]
+margin_left = 24.0
+margin_top = 19.0
+margin_right = 88.0
+margin_bottom = 83.0
+size_flags_horizontal = 4
+texture = ExtResource( 4 )
+stretch_mode = 2
+
+[node name="TitleText" type="Label" parent="Title"]
+margin_top = 87.0
+margin_right = 112.0
+margin_bottom = 94.0
+custom_fonts/font = ExtResource( 1 )
+text = "PRESS SPACE"
+align = 1
+
+[node name="GameOver" type="VBoxContainer" parent="."]
+visible = false
+margin_right = 112.0
+margin_bottom = 114.0
+alignment = 1
+
+[node name="GOverImage" type="TextureRect" parent="GameOver"]
+margin_left = 24.0
+margin_top = 14.0
+margin_right = 88.0
+margin_bottom = 78.0
+size_flags_horizontal = 4
+texture = ExtResource( 4 )
+stretch_mode = 2
+
+[node name="ScoreApple" type="HBoxContainer" parent="GameOver"]
+margin_top = 82.0
+margin_right = 112.0
+margin_bottom = 89.0
+alignment = 1
+
+[node name="LastScore" type="Label" parent="GameOver/ScoreApple"]
+margin_left = 12.0
+margin_right = 60.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 1 )
+text = "(S):5040"
+
+[node name="Apple" type="Label" parent="GameOver/ScoreApple"]
+margin_left = 64.0
+margin_right = 100.0
+margin_bottom = 7.0
+custom_fonts/font = ExtResource( 1 )
+text = "(A):58"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GOverText" type="Label" parent="GameOver"]
+margin_top = 93.0
+margin_right = 112.0
+margin_bottom = 100.0
+custom_fonts/font = ExtResource( 1 )
+text = "PRESS SPACE"
+align = 1
+
+[connection signal="game_over_screen" from="." to="." method="_on_Interface_game_over_screen"]
+[connection signal="title_screen" from="." to="." method="_on_Interface_title_screen"]
+[connection signal="up_health" from="." to="." method="_on_Interface_up_health"]
+[connection signal="up_score" from="." to="." method="_on_Interface_up_score"]
